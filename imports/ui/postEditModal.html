@@ -1,0 +1,65 @@
+<template name="PostEditModal_Template">
+  <div class="modal fade">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h4 class="modal-title">Edit Post: {{title}}</h4>
+        </div>
+ <form class="form-horizontal" id="edit-post" name="new-post" enctype="multipart/form-data">
+        <div class="modal-body">
+             
+                <fieldset>
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Title</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="title" id="title" value={{posts.title}} required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-md-2  control-label">Post</label>
+                        <div class="col-md-8">
+                           <textarea class="form-control" rows="5" id="postvalue" name="postvalue"  value={{posts.post_content}}></textarea>
+                        </div>
+                    </div>
+        
+                </fieldset>
+            
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="save">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+</form>
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="PostDeleteModal_Template">
+  <div class="modal fade">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h4 class="modal-title">Delete Post</h4>
+        </div>
+     
+          <div class="modal-body">
+             
+          Request post for deletion?
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="delete_yes">Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</template>

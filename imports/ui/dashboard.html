@@ -1,0 +1,67 @@
+<template name="dashboard_template">
+
+<div class="app">
+    <div class="row">
+         {{#if currentUser}}
+      <div class="row">
+
+        <div class="col-md-6 col-sm-offset-1">
+          <div class="panel panel-primary ">
+            <div class="panel-heading">
+             <h3 class="panel-title">Top 5 Contributors!</h3></div>
+            <div class="panel-body">
+            {{#each Top_Contributors}}
+
+            <ul  style="list-style: none;">
+              <li> {{>tc_content_template}}  made <strong>{{count}}</strong> post since {{>tc_content_template_date}} </li>
+            </ul>
+
+            {{/each}}       
+            </div>
+          </div>
+        </div>
+   </div>
+
+    <div class="col-md-6 col-sm-offset-3">
+      
+   <a style="text-decoration: none;"><h2>Feed</h2></a>
+ </div>
+    <div class="row">
+        <ul>
+        {{#each Posts_Dashboard}}
+          {{>Post_Card_Template}}
+        {{/each}}
+        </ul>
+    </div>
+
+         {{/if}}
+    </div>
+
+</div>
+
+</template>
+
+<template name="tc_content_template">
+
+    {{#each Tc_Content}}
+   
+            <strong>
+                {{username}}
+            </strong> 
+
+    {{/each}}
+
+</template>
+
+<template name="tc_content_template_date">
+
+    {{#each Tc_Content_Date}}
+   
+            <strong>
+           {{createdAt}}
+            </strong> 
+
+    {{/each}}
+
+</template>
+

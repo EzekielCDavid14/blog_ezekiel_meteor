@@ -1,0 +1,125 @@
+<template name="admin_template">
+
+
+<div class="app">
+
+    <div class="row">
+         {{#if currentUser}}
+        <div class="row">
+            <div class="col-md-6 col-sm-offset-1">
+                <div class="panel panel-primary ">
+            <div class="panel-heading">
+            <h3 class="panel-title">Requested Updates Post</h3></div>
+            <div class="panel-body">
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Requested Title</th>
+                            <th>Requested Post</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each request_edit}}  
+                        {{>request_edit_template}}
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+         </div>
+
+
+        </div>
+   </div>
+
+    <div class="row">
+            <div class="col-md-6 col-sm-offset-3">
+             <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Requested Delete Post</h3>
+                </div>
+            <div class="panel-body">
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Title</th>
+                            <th>Post</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each request_delete}}  
+                        {{>request_delete_template}}
+                    {{/each}}
+                    </tbody>
+                </table>
+
+                </div>
+             </div>
+            </div>
+   </div>
+
+    <div class="row">
+            <div class="col-md-6 col-sm-offset-3">
+             <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Requested Update Comment</h3>
+                </div>
+            <div class="panel-body">
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Requested Comment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each request_edit_comment}}  
+                        {{>request_edit_comment_template}}
+                    {{/each}}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+   </div>
+
+       <div class="row">
+            <div class="col-md-6 col-sm-offset-3">
+             <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Requested Delete Comment</h3>
+                </div>
+                <div class="panel-body">
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Comment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each request_delete_comment}}  
+                        {{>request_delete_comment_template}}
+                    {{/each}}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+   </div>
+         {{/if}}
+    </div>
+
+</div>
+
+</template>
+

@@ -1,0 +1,19 @@
+<template name="Comment_Template">
+  <hr>	
+            <div class="card-block">
+            	<div class="commentedit" data-id="{{_id}}">
+            	{{#each Comments_Content}}
+                    <p class="card-text">
+                      <i><u>{{email}}</u> replied:</i>
+                      {{#if ownedComment}}
+                      <a href="#" id="editCommentModal">Edit</a>
+    				  <a href="#" id="deleteRequestComment">Delete</a>
+    				  {{/if}}
+                      <br>{{comment}}
+                    </p>
+                 {{/each}}
+             </div>
+                                              
+
+</div>
+</template>

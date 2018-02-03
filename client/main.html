@@ -1,0 +1,252 @@
+<head>
+  <title>blog_ezekiel</title>
+   <link rel="/cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+   <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+</head>
+
+<body>
+
+  
+
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Blogster</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+  {{#if currentUser}}
+
+
+    {{#if isInRole 'admin'}}
+     <li class="nav-item active">
+        <a class="nav-link" href="admin">Admin</a>
+      </li>
+      {{/if}}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="dashboard">Dashboard</a>
+      </li>
+
+
+      <li class="nav-item active">
+        <a class="nav-link" href="posting">MyPost</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link logout" href="/" name="logout" id="logout">Logout - {{currentUser.profile.firstname}}</a>
+      </li>
+
+      {{else}}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="login">Login</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="register">Register</a>
+      </li>
+        {{/if}}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+   {{#if currentUser}}
+  {{>sidebar}}
+  {{/if}}
+
+  
+ {{>Template.dynamic template=content}}
+ 
+</body>
+
+
+<template name="Login">
+  {{#unless currentUser}}
+         <div class="card" style="width: 100%;">
+          <h2 style="padding-left: 6%;">Login</h2>
+            <form class="form-horizontal" id="login-form" name="login-form" >
+                <fieldset>
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Email</label>
+                        <div class="col-lg-2">
+                            <input type="email" class="form-control" name="emaillog" id="emaillog" placeholder="Email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Password</label>
+                        <div class="col-lg-2">
+                           <input type="password" class="form-control" name="passwordlog" id="passwordlog" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" value="Login">Login</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+         </div>
+         {{/unless}}
+</template>
+
+<template name="Register">
+	{{#unless currentUser}}
+         <div class="card" style="width: 100%;">
+              <h2 style="padding-left: 6%;">Register</h2>
+            <form class="form-horizontal" id="register-form" name="register-form" >
+                <fieldset>
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Email</label>
+                        <div class="col-md-2">
+                            <input type="email" class="form-control" name="emailreg" id="emailreg" placeholder="Email" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Username</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Email" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Password</label>
+                        <div class="col-md-2">
+                           <input type="password" class="form-control" name="passwordreg" id="passwordreg" placeholder="Password" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">First Name</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Last Name</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" value="Register">Register</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+         </div>
+         {{/unless}}
+</template>
+
+<template name="sidebar">
+  <div class="col-sm-2">
+    <nav class="nav-sidebar well">
+    <ul class="nav tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab"><h4>Online Users</h4></a></li>
+          {{#each onlusr}}
+            <li class="user">
+              <a href="/message">{{username}}{{#unless isInRole 'admin'}}
+             <small><span class="glyphicon glyphicon-user"></span><i>(admin)</i></small>
+           {{/unless}}</a>
+      
+
+            </li>
+          {{/each}} 
+    </ul>
+  </nav>
+
+</div>
+</template>
+
+<template name="message_template">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                </div>
+            <div class="panel" id="">
+                <div class="panel-body">
+                    <ul class="chat" style="list-style: none;">
+                      {{>messages}}
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                  {{>input_template}}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+<template name="messages">
+{{#each msgs}}
+{{#if myUsernameMessage name}}
+<li class="right clearfix">
+  <span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+    <div class="chat-body clearfix ">
+        <div class="header">
+            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>1 mins ago</small>
+            <strong class="pull-right primary-font">{{name}} &nbsp;</strong>
+        </div>
+        <p class="pull-right">
+          {{text}} &nbsp;
+        </p>
+    </div>
+    <br>
+</li>
+{{else}}
+<li class="left clearfix">
+  <span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+     <div class="chat-body clearfix">
+        <div class="header">
+            <strong class="primary-font">&nbsp;{{name}}:</strong>
+            <small class="pull-right text-muted">
+              <span class="glyphicon glyphicon-time">
+            </span>1 mins ago</small>
+        </div>
+        <p>
+        &nbsp;{{text}}
+        </p>
+    </div>
+      <br>
+</li>
+{{/if}}
+
+
+
+{{/each}}
+</template>
+
+<template name="input_template">
+  <div class="input-group">
+      <input id="btn-input" type="text" class="form-control input-sm message" placeholder="Type your message here..." />
+      <span class="input-group-btn">
+          <button class="btn btn-warning btn-sm" id="btn-chat">
+            Send
+          </button>
+      </span>
+  </div>
+
+</template>

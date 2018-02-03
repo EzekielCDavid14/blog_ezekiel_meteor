@@ -1,0 +1,68 @@
+<template name="Post_Card_Template">
+  <br>
+
+<div class="col-md-6 col-sm-offset-3">
+  <div class="postedit panel panel-primary" data-id="{{_id}}">
+  <div class="panel-body">
+              <div class="imageView">
+                  {{#with UserImages }}
+                    
+                  <video width="400" controls>
+                    <source src="{{image}}" type="video/mp4">
+                  </video>
+                
+                
+                    <div >
+                     <img src="{{image}}" alt="" class="thumbnail " />
+                    </div>
+              
+                  {{/with}}
+              </div>
+             {{>Post_Content_Template}}
+
+             {{#each postedit}}
+                {{>PostEditModal_Template}}
+             {{/each}}
+             <div class="well well-sm">
+          {{#each Comments}}
+            {{>Comment_Template}}
+          {{/each}}
+             </div>
+             <div class="panel">
+                 <form class="form-horizontal" id="new-comment" name="new-comment" >
+                   <textarea class="form-control input-md no-resize" id="commentvalue" name="commentvalue" style="height: 100px" placeholder="Your comment" required=""></textarea>
+                    <br>  
+                   <div class="form-group">
+                     <button type="submit" class="btn btn-info btn-md pull-right" style="margin-right: 4%;">
+                            <i class="fa fa-comment"></i>
+                                Submit comment
+                     </button>
+                   </div>
+            </form>
+             </div>                     
+    
+  </div>
+</div>
+</div>
+
+
+
+
+</template>
+
+<template name="Post_Content_Template">
+<div class="card-block">
+  {{#each Content}}
+ <h4> <div class="card-title">{{title}}</div></h4> 
+  {{#if ownedPost}}
+   <a href="#" id="editPostModal">Edit</a>
+    <a href="#" id="deletePost">Delete</a>
+  {{/if}}
+  
+              <p class="card-text"><i>posted by: {{email}}</i></p>
+              <p class="card-text">{{post_content}}</p>
+              {{/each}}
+</div>
+</template>
+
+

@@ -1,0 +1,75 @@
+
+
+<template name="posting_template">
+
+  {{#if currentUser}}
+    <div class="row">
+
+        <div class="col-md-6 col-sm-offset-1">
+             <div class="panel panel-primary ">
+            <div class="panel-heading">
+             <h3 class="panel-title">What is on your mind?</h3></div>
+            <div class="panel-body">
+            <form class="form-horizontal" id="new-post" name="new-post" enctype="multipart/form-data">
+                <fieldset>
+
+                      <div class="form-group">
+                        <label class="col-md-2 control-label" for="postingImage">Image</label>
+                         <span id="filename"></span>
+                        <div class="col-md-8">
+                                <input type="file" name="postingImage" id="postingImage" class="black postingImage">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-2 control-label">Title</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="title" id="title" placeholder="Your Title" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-md-2  control-label">Post</label>
+                        <div class="col-md-8">
+                           <textarea class="form-control" rows="5" id="postvalue" name="postvalue"  placeholder="Insert Your Text Here"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-2">
+                            <button type="submit" class="btn btn-primary">Publish Post</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            </div>
+        </div>
+        </div>
+
+
+   </div>
+
+    <div class="row">
+        <ul>
+        {{#each Posts}}
+            {{> Post_Card_Template}}
+        {{/each}}
+        </ul>
+    </div>
+         {{/if}}
+ 
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#postingImage:file").change(function (){
+            var fileName = $this.val();
+            $("span").text(fileName);
+            $("label").hide();
+        });
+    });
+</script>
+
+</template>
+
+
+
+

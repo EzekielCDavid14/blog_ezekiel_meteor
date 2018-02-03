@@ -1,0 +1,34 @@
+<template name="request_delete_comment_template">
+    <tr>
+        <td>{{email}}</td>
+        {{#each comment_content_delete}}
+            {{>comment_content_delete_temp}}
+        {{/each}}
+        <td>
+            <div class="col-sm-4">
+                <a href="#">
+                        <i class="glyphicon glyphicon-check-alt" id="approve_delete_comment" href="#full-width" data-size="18" data-c="#f56954" data-hc="#f56954" title="Approve">Approve</i>
+                </a>
+
+            </div>
+            <div class="col-sm-4">
+                <a href="#">
+                        <i class="glyphicon glyphicon-check-alt" id="reject_delete_comment" href="#full-width" data-size="18" data-c="#f56954" data-hc="#f56954" title="Store">Reject</i>
+                </a>
+
+            </div>
+            <div class="col-sm-4">
+                <a href="#">
+                        <i class="glyphicon glyphicon-check-alt" data-toggle="modal" data-href="#full-width" href="#full-width" data-size="18" data-c="#f56954" data-hc="#f56954" title="Store">View</i>
+                </a>
+
+            </div>
+        </td>
+    </tr>
+
+</template>
+
+<template name="comment_content_delete_temp">
+        <td>{{comment}}</td>
+
+</template>
